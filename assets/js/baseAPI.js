@@ -13,12 +13,16 @@ $.ajaxPrefilter(function (option) {
     }
     // 挂在完成函数
     option.complete = function (data) {
-        console.log(data.responseJSON)
-        if (data.responseJSON.status !== 0) {
-            localStorage.removeItem("token")
+        // console.log(data.responseJSON)
+        // console.log(option.url)
+        if (option.url != "http://api-breakingnews-web.itheima.net/my/updatepwd") {
+            if (data.responseJSON.status !== 0) {
+                localStorage.removeItem("token")
 
-            location.href = "./login.html"
+                location.href = "./login.html"
+            }
         }
+
     }
 
 })

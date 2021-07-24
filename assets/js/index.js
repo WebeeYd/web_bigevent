@@ -48,6 +48,7 @@ function renderAvatar(user){
     $("#welcome").html("欢迎&nbsp;&nbsp;"+name)
     // 按照需要来渲染头像
     // 渲染图片头像
+    console.log(user)
     if(user.user_pic!=null){
         $(".layui-nav-img").attr("src",user.user_pic).show()
         $(".text-avatar").hide()
@@ -57,4 +58,22 @@ function renderAvatar(user){
         $(".layui-nav-img").hide()
         $(".text-avatar").html(name[0].toUpperCase()).show()
     }
+}
+// 在user中要调用的方法
+function getUserinfomation(){
+    // 发送获取用户信息请求
+    $.ajax({
+        type:"get",
+        url:"/my/userinfo",
+        // 设置请求头
+        // headers:{
+        //     Authorization:localStorage.getItem("token")||""
+        // },
+        success:function(data){
+            if(data.status!=0){
+                return layui.layer.msg(data.message)
+            }
+            renderAvatar(data.data)
+        }
+    })
 }

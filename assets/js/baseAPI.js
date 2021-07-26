@@ -15,7 +15,7 @@ $.ajaxPrefilter(function (option) {
     option.complete = function (data) {
         // console.log(data.responseJSON)
         // console.log(option.url)
-        if (option.url != "http://api-breakingnews-web.itheima.net/my/updatepwd") {
+        if (option.url != "http://api-breakingnews-web.itheima.net/my/updatepwd"&& option.url!="http://api-breakingnews-web.itheima.net/my/article/cates/:id") {
             if (data.responseJSON.status !== 0) {
                 localStorage.removeItem("token")
 
